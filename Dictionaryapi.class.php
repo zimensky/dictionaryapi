@@ -107,6 +107,7 @@ class Dictionaryapi {
       }
       $item[] = array(
         'headword' => empty($entry->ew) ? '' : (string)$entry->ew,
+        'syllables' => empty($entry->hw) ? '' : (string)$entry->hw,
         'part_of_speech' => empty($entry->fl) ? '' : (string)$entry->fl,
         'sound' => empty($entry->sound->wav) ? '' : (string)$entry->sound->wav,
         'pron' => empty($entry->pr) ? '' : (string)$entry->pr,
