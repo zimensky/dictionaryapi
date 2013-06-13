@@ -154,8 +154,8 @@ class Dictionaryapi {
    * @return string
    */
   private function parseListToStr($list, $connector = ',') {
-    // Search "word" or "word (word)"
-    preg_match_all('/((\w+)(\s\(\w+\))?)/', $list, $result);
+    // Search "word" or "word (word)" or "word word" or "word word (word)"
+    preg_match_all('/((\w+)(\s\w+)?(\s\(\w+\))?)/', $list, $result);
     if (empty($result[1]))
       return false;
     else
