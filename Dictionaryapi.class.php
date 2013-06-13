@@ -150,29 +150,29 @@ class Dictionaryapi {
   /**
    * Parses words lists such as synonyms, antonyms, etc.
    * @param $list string List of words divided by any character
-   * @param string $connector
-   * @return string
+   * @return bool
+   *
    */
-  private function parseListToStr($list, $connector = ',') {
+  private function parseList($list) {
     // Search "word" or "word (word)" or "word word" or "word word (word)"
-    preg_match_all('/((\w+)(\s\w+)?(\s\(\w+\))?)/', $list, $result);
-    if (empty($result[1]))
-      return false;
-    else
-      return implode($connector, $result[1]);
-  }
-
-  /**
-   * Parses words lists such as synonyms, antonyms, etc.
-   * @param $list string List of words divided by any character
-   * @return array
-   */
-  private function parseListToArray($list) {
-    // Search "word" or "word (word)" or "word word" or "word word (word)"
-    preg_match_all('/((\w+)(\s\w+)?(\s\(\w+\))?)/', $list, $result);
+    preg_match_all('/((\w+)(\s\w+)*(\s\(\w+\))?)/', $list, $result);
     if (empty($result[1]))
       return false;
     else
       return $result[1];
+  }
+
+  /**
+   * Parses words lists to string.
+   * @param $list string List of words divided by any character
+   * @param string $connector
+   * @return string
+   */
+  private function parseListToStr($list, $connector = ',') {
+    $result = $this->parseList($list);
+    if (empty($result))
+      return false;
+    else
+      return implode($connector, $result);
   }
 }
